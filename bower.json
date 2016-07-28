@@ -1,0 +1,22 @@
+{
+  "name": "turbolinks-jquery",
+  "version": "1.0.0",
+  "homepage": "https://github.com/wshostak/turbolinks-jquery",
+  "authors": [
+    "William Shostak - http://www.musicxray.com"
+  ],
+  "description": "jQuery plugin to fix binded / ready event problems caused by Turbolinks5",
+  "main": "turbolinks-jquery.js",
+  "keywords": [
+    "jquery",
+    "turbolinks"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
