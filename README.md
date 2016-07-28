@@ -1,2 +1,2 @@
 # turbolinks-jquery
-jQuery plugin to fix minded / ready event problems caused by Turbolinks5
+jQuery plugin to fix binded / ready event problems caused by Turbolinks5
