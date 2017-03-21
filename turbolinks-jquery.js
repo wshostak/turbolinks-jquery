@@ -42,16 +42,18 @@
       splitEvents.forEach(function(event) {
         args.namespace = event.split('.');
 
-        (($._data(args.elem, 'events') || [])[args.namespace.shift()] || [])
-          .forEach(function(storedEvent) {
-            if (
-              storedEvent.namespace == args.namespace.sort().join('.') &&
-              storedEvent.selector == args.selector && storedEvent.data == args.data &&
-              storedEvent.handler.toString() == args.handler.toString()
-            ) {
-              events = events.replace(event, '').trim();
-            }
-          });
+        var storedEvents = ($._data(args.elem, 'events') || [])[args.namespace.shift()] || [];
+
+        storedEvents.forEach(function(storedEvent) {
+          if (
+            storedEvent.namespace === args.namespace.sort().join('.') &&
+            storedEvent.selector === args.selector &&
+            storedEvent.data === args.data &&
+            storedEvent.handler.toString() === args.handler.toString()
+          ) {
+            events = events.replace(event, '').trim();
+          }
+        });
       });
     }
 
