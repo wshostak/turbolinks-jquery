@@ -1,6 +1,6 @@
 /*
   turbolinks-jquery.js
-  Version: 1.0.1
+  Version: 1.0.2
 
   == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
   jQuery plugin to fix binded / ready event problems caused by Turbolinks5
@@ -9,6 +9,10 @@
 */
 
 (function($) {
+  $.turbo = {
+    isReady: false,
+  };
+
   $.fn.onOld = $.fn.on;
 
   $.fn.on = function(events, selector, data, handler) {
@@ -19,7 +23,7 @@
         elem: this.context || this,
         selector: selector,
         data: data,
-        handler: handler
+        handler: handler,
       };
       var temp;
 
@@ -59,6 +63,15 @@
 
     return $(this).onOld(events, selector, data, handler);
   };
+
+  $(document)
+    .off('.turbo')
+    .on('turbolinks:load.turbo', function() {
+      $.turbo.isReady = true;
+    })
+    .on('turbolinks:request-start.turbo', function() {
+      $.turbo.isReady = false;
+    });
 
   $.fn.ready = function(fn) {
     document.addEventListener('turbolinks:load', fn);
